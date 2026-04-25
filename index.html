@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Portal SENAI Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark">
+
+  <header class="header">
+    <div class="header-left">
+      <span class="portal-brand">Portal</span>
+
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/SENAI_S%C3%A3o_Paulo_logo.png" class="senai-logo"
+        alt="SENAI" />
+
+      <span class="subtitle">Assistente Virtual</span>
+    </div>
+
+    <div class="header-right">
+  <span class="vttz">VTTZ</span>
+  <img src="https://upload.wikimedia.org/wikipedia/pt/b/b4/Corinthians_simbolo.png"
+  class="corinthians">
+  <div class="theme-switch" onclick="toggleTheme()">
+    <div class="switch-knob">
+      
+            <span class="icon sun">☀️</span>
+            <span class="icon moon">🌙</span>
+          </div>
+        </div>
+      </div>
+
+  </header>
+
+  <main class="chat">
+    <div id="messages" class="chat__messages"></div>
+
+    <div class="quick-actions">
+      <button onclick="quickAsk('Cursos')">Cursos</button>
+      <button onclick="quickAsk('Datas')">Datas</button>
+      <button onclick="quickAsk('Unidades')">Unidades</button>
+    </div>
+
+    <div class="chat__input">
+      <input id="input" type="text" placeholder="Pergunte algo sobre o SENAI..." onkeypress="handleEnter(event)">
+      <button id="send-btn" onclick="sendMessage()">➤</button>
+      <button id="voice-btn" onclick="startVoice()">🎤</button>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

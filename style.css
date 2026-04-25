@@ -1,0 +1,291 @@
+/* ===== GLOBAL ===== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.5s, color 0.5s;
+}
+
+/* ===== MODO ESCURO (igual ao seu original) ===== */
+body.dark {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/9/9a/SENAI_Nami_Jafet%2C_Mogi_das_Cruzes%2C_SP.jpg') center/cover fixed;
+}
+
+body.dark::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+body.dark .header {
+  background: rgba(40,40,40,0.7);
+  color: white;
+}
+
+body.dark .chat {
+  background: rgba(40,40,40,0.25);
+  color: white;
+}
+
+body.dark .chat__bubble {
+  background: rgba(70,70,70,0.9);
+}
+
+body.dark .chat__bubble--user {
+  background: #cc0000;
+}
+
+body.dark .chat__input input {
+  background: black;
+  color: white;
+}
+
+/* ===== MODO CLARO (ajustado) ===== */
+body.light {
+  background: url('https://www.baguete.com.br//cache/image/noticias/2025/08/1756132930_senai-sp.jpg?w=730') center/cover fixed;
+}
+
+body.light::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255,255,255,0.25); /* só um leve branco transparente */
+}
+
+body.light .header {
+  background: rgba(255,255,255,0.85);
+  color: #111;
+}
+
+body.light .chat {
+  background: rgba(255,255,255,0.4); /* chat leve transparente */
+  color: #111;
+}
+
+body.light .chat__bubble {
+  background: rgba(255,255,255,0.9);
+  color: #111;
+}
+
+body.light .chat__bubble--user {
+  background: #00bfff; /* azul claro */
+  color: white;
+}
+
+body.light .chat__input input {
+  background: rgba(255,255,255,0.9);
+  color: #111;
+}
+
+body.light .quick-actions button,
+body.light #send-btn,
+body.light #voice-btn {
+  background: #00bfff; /* azul claro */
+  color: white;
+}
+
+/* ===== HEADER ===== */
+.header {
+  display: flex;
+  justify-content: space-between; /* esquerda e direita */
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* 🔥 empurra tudo pra direita */
+}
+
+.divider {
+  width: 2px;
+  height: 20px;
+  background: gray;
+}
+
+.subtitle {
+  font-size: 12px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.corinthians {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
+
+/* SWITCH DE TEMA */
+.theme-switch {
+  width: 60px;
+  height: 28px;
+  background: #ccc;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* knob */
+.switch-knob {
+  width: 26px;
+  height: 26px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  font-size: 14px;
+}
+
+/* posição no tema claro */
+body.light .switch-knob {
+  left: 32px;
+}
+
+/* ícones */
+.icon {
+  position: absolute;
+  transition: 0.3s;
+}
+
+/* ☀️ aparece no DARK */
+.sun {
+  opacity: 1;
+}
+
+.moon {
+  opacity: 0;
+}
+
+/* 🌙 aparece no LIGHT */
+body.light .sun {
+  opacity: 0;
+}
+
+body.light .moon {
+  opacity: 1;
+}
+
+/* ===== CHAT ===== */
+.chat {
+  height: 82vh;
+  width: 70%;
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  padding: 20px;
+  backdrop-filter: blur(20px);
+}
+
+.chat__messages {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* ===== MENSAGENS ===== */
+.chat__message {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  align-items: flex-end;
+}
+
+.chat__message--user {
+  flex-direction: row-reverse;
+}
+
+.chat__bubble {
+  padding: 14px;
+  border-radius: 16px;
+  max-width: 75%;
+  line-height: 1.6;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* ===== INPUT ===== */
+.chat__input {
+  display: flex;
+  gap: 5px;
+}
+
+.chat__input input {
+  flex: 1;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+}
+
+.chat__input button {
+  margin-left: 10px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.chat__input button:hover {
+  transform: scale(1.1);
+}
+
+/* ===== BOTÕES RÁPIDOS ===== */
+.quick-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.quick-actions button {
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.quick-actions button:hover {
+  transform: scale(1.1);
+}
+
+/* ===== DIGITANDO ===== */
+.typing {
+  font-size: 13px;
+  opacity: 0.7;
+}
+.portal-brand {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #ffffff;
+  opacity: 0.9;
+  font-family: Arial, sans-serif;
+}
+
+.senai-logo {
+  height: 22px;
+  width: auto;
+  margin-left: 8px;
+  opacity: 0.9;
+}
+
+.subtitle {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-left: 10px;
+}
