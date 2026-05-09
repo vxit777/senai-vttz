@@ -17,6 +17,24 @@ async function carregarChaves() {
     console.error("Erro ao carregar chaves:", err);
   }
 }
+let baseConhecimento = [];
+
+async function carregarJSONL() {
+
+  const response = await fetch("perguntas.jsonl");
+
+  const text = await response.text();
+
+  const linhas = text.split("\n");
+
+  baseConhecimento = linhas
+    .filter(l => l.trim() !== "")
+    .map(l => JSON.parse(l));
+
+  console.log("JSONL carregado:", baseConhecimento);
+}
+
+carregarJSONL();
 
 
 // ========================
@@ -82,6 +100,7 @@ function sendMessage(custom = null) {
     removeTyping();
     const reply = await sendToAzure(text);
     addMessageAnimated(reply);
+falar(reply);
   }, 700);
 }
 
@@ -162,26 +181,7 @@ addMessageAnimated("👋 Bem-vindo ao Portal SENAI!");
 // =====================
 // 🎤 VOZ - OUVIR
 // =====================
-function startVoice() {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  if (!SpeechRecognition) {
-    alert("Seu navegador não suporta voz");
-    return;
-  }
-
-  const recognition = new SpeechRecognition();
-  recognition.lang = "pt-BR";
-  recognition.start();
-
-  recognition.onresult = (event) => {
-    const text = event.results[0][0].transcript;
-
-    // usa seu chat existente
-    document.getElementById("input").value = text;
-    sendMessage(text);
-  };
-}
 
 
 // =====================
@@ -291,3 +291,13 @@ function enviarMensagem(texto) {
   }
 }
 carregarChaves();
+
+function falar(texto) {
+  const synth = window.speechSynthesis;
+
+  const utterance = new SpeechSynthesisUtterance(texto);
+  utterance.lang = "pt-BR";
+  utterance.rate = 1;
+
+  synth.speak(utterance);
+}
